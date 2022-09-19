@@ -27,6 +27,7 @@
 
   export default defineComponent({
     name: 'FormTracker',
+    emits: ['onSaveTask'],
     components: { TimerSection },
     data () {
       return {
@@ -35,8 +36,12 @@
     },
     methods: {
       taskFinished (elapsedTime: number): void {
+        this.$emit('onSaveTask', {
+          description: this.task,
+          duration: elapsedTime
+        })
         this.task = ''
-      }
+      },
     }
   })
 </script>
