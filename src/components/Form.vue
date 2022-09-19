@@ -7,6 +7,7 @@
         aria-label="Formulário para criação de uma nova tarefa"
       >
         <input
+          v-model="task"
           type="text"
           class="input"
           placeholder="Qual tarefa você deseja inciar?"
@@ -14,24 +15,7 @@
       </div>
 
       <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <section>
-            <strong>{{elapsedTime}}</strong>
-          </section>
-
-          <button class="button" @click="start">
-            <span class="icon">
-              <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-          </button>
-          <button class="button" @click="stop">
-            <span class="icon">
-              <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <TimerSection @onTimerFinished="taskFinished" />
       </div>
     </div>
   </div>
@@ -39,28 +23,19 @@
 
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import TimerSection from './TimerSection.vue'
 
   export default defineComponent({
     name: 'FormTracker',
+    components: { TimerSection },
     data () {
       return {
-        timeInSeconds: 0,
-        timer: 0
-      }
-    },
-    computed: {
-      elapsedTime () : string {
-        return new Date(this.timeInSeconds * 1000).toISOString().substr(11, 8)
+        task: ''
       }
     },
     methods: {
-      start () {
-        this.timer = setInterval(() => {
-          this.timeInSeconds += 1
-        }, 1000)
-      },
-      stop () {
-        clearInterval(this.timer)
+      taskFinished (elapsedTime: number): void {
+        this.task = ''
       }
     }
   })
