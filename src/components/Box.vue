@@ -1,5 +1,5 @@
 <template>
-  <div class="box has-text-weight-bold">
+  <div class="box has-text-weight-bold" :style="styles">
     <slot></slot>
   </div>
 </template>
@@ -9,11 +9,12 @@
 
   export default defineComponent({
     name: 'BoxTracker',
+    data () {
+      return {
+        styles: {
+          backgroundColor: '#FAF0CA'
+        }
+      }
+    }
   })
 </script>
-
-<style scoped>
-  .box {
-    background: #FAF0CA;
-  }
-</style>

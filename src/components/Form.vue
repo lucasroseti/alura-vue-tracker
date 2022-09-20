@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box form">
     <div class="columns">
       <div
         class="column is-8"
@@ -45,3 +45,10 @@
     }
   })
 </script>
+
+<style>
+  .form {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+</style>
